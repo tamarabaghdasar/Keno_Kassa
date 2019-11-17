@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>KenoM Cashier GUI</title>
+    <link rel="stylesheet" href="css/css.css?1" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+</head>
+<body style="background-color: rgb(153, 204, 102);">
+<div class="PBShadow" style="height: 20px; width:274px;position:absolute; top: 29px; left: 31px;"></div>
+<div id="progressBar" style="height: 20px; width:275px;position:absolute; top: -20px; left: 30px;">
+    <div id="progress_bar" class="ui-progress-bar ui-container">
+        <div id="pbid" class="ui-progress" style="width: 10%;"></div>
+    </div>
+</div>
+<div id="statustxt" class="shadowDraw" style="height: 40px; width:360px;position:absolute; top: 1px; left: 10px;">No more bets (1:48)</div>
+<div id="draw" class="shadowDraw" style="height: 40px; width:160px;position:absolute; top: 1px; left: 200px;"></div>
+<div class="shadowDraw" style="height: 40px; width:100px;position:absolute; top: 53px; left: 20px;">Round</div>
+<div id="round" class="shadowRound" style="height: 40px; width:40px;position:absolute; top: 50px; left: 110px;">1045606</div>
+
+<div id="help" style="position: absolute; top: 50px; left: 700px;">
+    <button style="height: 30px;" onclick="window.open('http://www.youtube.com/embed/8tNw0dsWiVY?autoplay=1')">Video instructions to accept bets</button>
+    <button style="height: 30px;" onclick="window.open('http://inbet.s3.amazonaws.com/pr/rules/keno_999-c.html')">Rules for cashiers</button>
+</div>
+
+<table class="table1" border="0" bgcolor="#666666" style="border:solid 1px black; position:absolute; top: 100px; left: 620px;">
+    <tbody><tr>
+        <td>
+            <table cellpadding="3" bgcolor="#666666">
+                <tbody><tr>
+                    <td colspan="2"><input id="totalSumm" class="white inputSumm" value="0"></td>
+                    <td rowspan="1"><input class="calc button black butPrint" type="button" value="Print..."></td>
+                </tr>
+                <tr>
+                    <td><input class="calc button black butSumm" type="button" value="500"></td>
+                    <td><input class="calc button black butSumm" type="button" value="1000"></td>
+                    <td><input class="calc button black butSumm" type="button" value="5000"></td>
+                </tr>
+                <tr>
+                    <td><input class="calc button black butSumm" type="button" value="100"></td>
+                    <td><input class="calc button black butSumm" type="button" value="200"></td>
+                    <td><input class="calc button black butSumm" type="button" value="300"></td>
+                </tr>
+                <tr>
+                    <td><input class="calc button black butSumm" type="button" value="20"></td>
+                    <td><input class="calc button black butSumm" type="button" value="25"></td>
+                    <td><input class="calc button black butSumm" type="button" value="50"></td>
+                </tr>
+                <tr>
+                    <td><input class="calc button black butSumm" type="button" value="3"></td>
+                    <td><input class="calc button black butSumm" type="button" value="5"></td>
+                    <td><input class="calc button black butSumm" type="button" value="10"></td>
+                </tr>
+                <tr>
+                    <td><input class="calc button black butSumm" type="button" value="1"></td>
+                    <td><input class="calc button black butSumm" type="button" value="2"></td>
+                    <td><input class="calc button black butSumm" type="button" value="Clear"></td>
+                </tr>
+                </tbody></table>
+        </td>
+        <td>
+            <table cellpadding="3">
+                <tbody><tr>
+                    <td colspan="3" class="whiteText">Choose random<br> number of balls<br> in combination</td>
+                </tr>
+                <tr>
+                    <td><input class="calc button black butSumm randButton" type="button" value="8"></td>
+                    <td><input class="calc button black butSumm randButton" type="button" value="9"></td>
+                    <td><input class="calc button black butSumm randButton" type="button" value="10"></td>
+                </tr>
+                <tr>
+                    <td><input class="calc button black butSumm randButton" type="button" value="5"></td>
+                    <td><input class="calc button black butSumm randButton" type="button" value="6"></td>
+                    <td><input class="calc button black butSumm randButton" type="button" value="7"></td>
+                </tr>
+                <tr>
+                    <td><input class="calc button black butSumm randButton" type="button" value="2"></td>
+                    <td><input class="calc button black butSumm randButton" type="button" value="3"></td>
+                    <td><input class="calc button black butSumm randButton" type="button" value="4"></td>
+                </tr>
+                <tr>
+                    <td><input class="calc button black butSumm randButton" type="button" value="1"></td>
+                    <td colspan="2"><input class="calc button black butSumm randButton" type="button" id="clearButton" value="clear"></td>
+                </tr>
+                </tbody></table>
+        </td>
+    </tr>
+    <tr>
+        <td width="300px" colspan="2">
+            <table width="450px" border="0" bgcolor="#666666" cellpadding="5">
+                <tbody><tr>
+                    <td class="whiteText">Combination</td>
+                    <td class="whiteText">Chsn</td>
+                    <td class="whiteText">Amount</td>
+                    <td style="width: 170px;"></td>
+                </tr>
+                <tr class="combination">
+                    <td><input id="comb" style="background: #ffcccc" class="white input" value="" readonly=""></td>
+                    <td style="text-align: center;"><input id="num" style="background: #ffcccc; width: 40px;" class="white inputPSumm" value="" readonly=""></td>
+                    <td><input id="sum" style="background: #ffcccc; width: 63px;" class="white inputPSumm" value="" readonly=""></td>
+                    <td>
+                        <button class="add-more" style="display: none;  height: 30px; width: 35px; font-size: 38px; font-weight: bold; line-height: 24px; padding: 0">+</button>
+                        <button class="remove" style="display: none;  height: 30px; width: 35px; font-size: 38px; font-weight: bold; line-height: 24px; padding: 0">-</button>
+                    </td>
+                </tr>
+                </tbody></table>
+        </td>
+    </tr>
+    </tbody></table>
+<div class="table" width="90%" id="field" style="border:solid 1px black; position:absolute; top: 100px; left: 10px;"><table width="100%" height="100%"><tbody><tr><td id="sector1"><input class="button2 ball black" type="button" value="1"></td><td id="sector2"><input class="button2 ball black" type="button" value="2"></td><td id="sector3"><input class="button2 ball black" type="button" value="3"></td><td id="sector4"><input class="button2 ball black" type="button" value="4"></td><td id="sector5"><input class="button2 ball black" type="button" value="5"></td><td id="sector6"><input class="button2 ball black" type="button" value="6"></td><td id="sector7"><input class="button2 ball black" type="button" value="7"></td><td id="sector8"><input class="button2 ball black" type="button" value="8"></td><td id="sector9"><input class="button2 ball black" type="button" value="9"></td><td id="sector10"><input class="button2 ball black" type="button" value="10"></td></tr><tr><td id="sector11"><input class="button2 ball black" type="button" value="11"></td><td id="sector12"><input class="button2 ball black" type="button" value="12"></td><td id="sector13"><input class="button2 ball black" type="button" value="13"></td><td id="sector14"><input class="button2 ball black" type="button" value="14"></td><td id="sector15"><input class="button2 ball black" type="button" value="15"></td><td id="sector16"><input class="button2 ball black" type="button" value="16"></td><td id="sector17"><input class="button2 ball black" type="button" value="17"></td><td id="sector18"><input class="button2 ball black" type="button" value="18"></td><td id="sector19"><input class="button2 ball black" type="button" value="19"></td><td id="sector20"><input class="button2 ball black" type="button" value="20"></td></tr><tr><td id="sector21"><input class="button2 ball black" type="button" value="21"></td><td id="sector22"><input class="button2 ball black" type="button" value="22"></td><td id="sector23"><input class="button2 ball black" type="button" value="23"></td><td id="sector24"><input class="button2 ball black" type="button" value="24"></td><td id="sector25"><input class="button2 ball black" type="button" value="25"></td><td id="sector26"><input class="button2 ball black" type="button" value="26"></td><td id="sector27"><input class="button2 ball black" type="button" value="27"></td><td id="sector28"><input class="button2 ball black" type="button" value="28"></td><td id="sector29"><input class="button2 ball black" type="button" value="29"></td><td id="sector30"><input class="button2 ball black" type="button" value="30"></td></tr><tr><td id="sector31"><input class="button2 ball black" type="button" value="31"></td><td id="sector32"><input class="button2 ball black" type="button" value="32"></td><td id="sector33"><input class="button2 ball black" type="button" value="33"></td><td id="sector34"><input class="button2 ball black" type="button" value="34"></td><td id="sector35"><input class="button2 ball black" type="button" value="35"></td><td id="sector36"><input class="button2 ball black" type="button" value="36"></td><td id="sector37"><input class="button2 ball black" type="button" value="37"></td><td id="sector38"><input class="button2 ball black" type="button" value="38"></td><td id="sector39"><input class="button2 ball black" type="button" value="39"></td><td id="sector40"><input class="button2 ball black" type="button" value="40"></td></tr><tr><td id="sector41"><input class="button2 ball black" type="button" value="41"></td><td id="sector42"><input class="button2 ball black" type="button" value="42"></td><td id="sector43"><input class="button2 ball black" type="button" value="43"></td><td id="sector44"><input class="button2 ball black" type="button" value="44"></td><td id="sector45"><input class="button2 ball black" type="button" value="45"></td><td id="sector46"><input class="button2 ball black" type="button" value="46"></td><td id="sector47"><input class="button2 ball black" type="button" value="47"></td><td id="sector48"><input class="button2 ball black" type="button" value="48"></td><td id="sector49"><input class="button2 ball black" type="button" value="49"></td><td id="sector50"><input class="button2 ball black" type="button" value="50"></td></tr><tr><td id="sector51"><input class="button2 ball black" type="button" value="51"></td><td id="sector52"><input class="button2 ball black" type="button" value="52"></td><td id="sector53"><input class="button2 ball black" type="button" value="53"></td><td id="sector54"><input class="button2 ball black" type="button" value="54"></td><td id="sector55"><input class="button2 ball black" type="button" value="55"></td><td id="sector56"><input class="button2 ball black" type="button" value="56"></td><td id="sector57"><input class="button2 ball black" type="button" value="57"></td><td id="sector58"><input class="button2 ball black" type="button" value="58"></td><td id="sector59"><input class="button2 ball black" type="button" value="59"></td><td id="sector60"><input class="button2 ball black" type="button" value="60"></td></tr><tr><td id="sector61"><input class="button2 ball black" type="button" value="61"></td><td id="sector62"><input class="button2 ball black" type="button" value="62"></td><td id="sector63"><input class="button2 ball black" type="button" value="63"></td><td id="sector64"><input class="button2 ball black" type="button" value="64"></td><td id="sector65"><input class="button2 ball black" type="button" value="65"></td><td id="sector66"><input class="button2 ball black" type="button" value="66"></td><td id="sector67"><input class="button2 ball black" type="button" value="67"></td><td id="sector68"><input class="button2 ball black" type="button" value="68"></td><td id="sector69"><input class="button2 ball black" type="button" value="69"></td><td id="sector70"><input class="button2 ball black" type="button" value="70"></td></tr><tr><td id="sector71"><input class="button2 ball black" type="button" value="71"></td><td id="sector72"><input class="button2 ball black" type="button" value="72"></td><td id="sector73"><input class="button2 ball black" type="button" value="73"></td><td id="sector74"><input class="button2 ball black" type="button" value="74"></td><td id="sector75"><input class="button2 ball black" type="button" value="75"></td><td id="sector76"><input class="button2 ball black" type="button" value="76"></td><td id="sector77"><input class="button2 ball black" type="button" value="77"></td><td id="sector78"><input class="button2 ball black" type="button" value="78"></td><td id="sector79"><input class="button2 ball black" type="button" value="79"></td><td id="sector80"><input class="button2 ball black" type="button" value="80"></td></tr></tbody></table></div>
+
+<!--div id="wait-for-bet" style="display: none; position: fixed; top: 0: left:0; width: 100%; height:100%; background-color: rgba(0,0,0, 0.7);">
+    <div style="color: #ffa76d; padding-top: 200px; font-size: 30px; text-align: center; font-weight: bold;">
+        Please wait, <br>bet registration in progress...		</div>
+</div-->
+
+<script type="text/javascript" src="./misc/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="./i18n.php?js=1"></script>
+<script type="text/javascript" src="./js/purl.js"></script>
+<script type="text/javascript" src="./js/config.js?9"></script>
+<script type="text/javascript" src="./js/keno.js?11"></script>
+
+<textarea id="wait_for_slip_html" style="display: none;">			&lt;title&gt;KenoM Cashier GUI wait...&lt;/title&gt;
+			&lt;meta http-equiv="Content-Type" content="text/html; charset=utf8" /&gt;
+
+		&lt;div id="wait-for-bet" style="display: none; position: fixed; top: 0: left:0; width: 100%; height:100%; background-color: rgba(0,0,0, 0.7);"&gt;
+			&lt;div style="color: #ffa76d; padding-top: 200px; font-size: 30px; text-align: center; font-weight: bold;"&gt;
+				Please wait, &lt;br&gt;bet registration in progress...			&lt;/div&gt;
+		&lt;/div&gt;
+
+		&lt;style&gt;
+			body {
+				margin: 0;
+				padding: 0;
+			}
+		&lt;/style&gt;
+
+		&lt;script&gt;
+
+			$body = $($w.document.body);
+			$($w.document).ready(function(){
+				askForSlip(betString);
+			});
+
+			var requestIterator = 0;
+			function askForSlip(url) {
+				$('#wait-for-bet', $body).show();
+				$.ajax(url, {
+					dataType: "json",
+					timeout: 10000,
+					success: function(data) {
+						if(data.ok) {
+							$('#wait-for-bet', $body).hide();
+							requestIterator = 0;
+							$w.document.location.href = ready_slip_url + '?slip=' + data.bet_string + '&amp;token=' + Math.random();
+						}
+						else {
+							$('#wait-for-bet div', $body).html(i18n('Невозможно принять ставку, вероятно котировки уже закрыты'));
+							requestIterator = 0;
+						}
+
+					},
+					error: function(xhr, status) {
+						if(requestIterator &lt; 10) {
+							requestIterator++;
+							setTimeout(function(){
+								askForSlip(url);
+							}, 200);
+						}
+
+					}
+				});
+			}
+
+		&lt;/script&gt;
+	</textarea>
+
+</body>
+</html>
+
+
+
+
+
+
